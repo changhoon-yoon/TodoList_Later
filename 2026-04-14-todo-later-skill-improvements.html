@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TODO Later - 2026-04-14 todo-later Skill 개선 아이디어</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-strong: #0ea5e9;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --border: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem 1rem;
+    line-height: 1.7;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    color: var(--accent);
+  }
+  .date {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-family: "Consolas", "Menlo", monospace;
+  }
+  section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  section h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: var(--accent);
+    border-left: 4px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+  section h3 {
+    color: var(--warning);
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+  }
+  .priority {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+  .p1 { background: var(--danger); color: #000; }
+  .p2 { background: var(--warning); color: #000; }
+  .p3 { background: var(--accent-strong); color: #000; }
+  ul.todo { list-style: none; padding-left: 0; }
+  ul.todo li {
+    padding: 0.65rem 0.8rem;
+    margin-bottom: 0.5rem;
+    background: rgba(56, 189, 248, 0.05);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+  }
+  ul.todo li strong { color: var(--text); }
+  ul.todo li small {
+    display: block;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+  }
+  code {
+    background: rgba(148, 163, 184, 0.15);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: "Consolas", "Menlo", monospace;
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+  .summary-grid { display: grid; gap: 0.75rem; }
+  .summary-grid > div {
+    padding: 0.75rem 1rem;
+    background: rgba(56, 189, 248, 0.05);
+    border-radius: 6px;
+    border-left: 3px solid var(--success);
+  }
+  .summary-grid strong { color: var(--success); }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>todo-later Skill 개선 아이디어</h1>
+    <div class="date">작성일: 2026-04-14 · 프로젝트: PCANtool for Keypad · 🧪 첫 skill 테스트 실행</div>
+  </header>
+
+  <section>
+    <h2>📌 오늘 요약</h2>
+    <div class="summary-grid">
+      <div><strong>1. todo-later skill 최초 작성</strong><br>
+        <code>~/.claude/skills/todo-later/</code>에 <code>SKILL.md</code>와 <code>template.html</code> 생성. 향후 세션에서 "나중에 할 일로 정리해줘" 요청 시 자동 발동 예정.
+      </div>
+      <div><strong>2. 첫 실전 테스트 실행</strong><br>
+        SKILL.md 절차대로 수동 시뮬레이션: <code>git pull</code> → HTML 생성 → commit → push. 이 파일이 그 결과물.
+      </div>
+      <div><strong>3. 하드코딩 경로 이슈 발견</strong><br>
+        <code>D:/00_프로젝트/TodoList_Later</code>가 skill에 고정되어 있어 다른 환경(macOS, Linux, 다른 Windows)에서 동작 불가. 경로 변수화 필요.
+      </div>
+      <div><strong>4. Skill repo 공유 전략 논의</strong><br>
+        public/private 분리, install 스크립트, Windows symlink 권한 이슈 등을 고려한 중장기 계획 수립. 2~3개 skill 쌓인 후 별도 repo 생성 권장으로 결론.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🚀 앞으로 할 일 (TODO)</h2>
+
+    <h3><span class="priority p1">1순위</span>Skill 자체 견고성 (블로커)</h3>
+    <ul class="todo">
+      <li>
+        <strong>저장소 경로 변수화</strong>
+        <small>현재 <code>D:/00_프로젝트/TodoList_Later</code> 하드코딩 → 환경변수 <code>$TODO_LATER_PATH</code> 또는 skill 실행 시 사용자에게 확인하는 방식으로 전환. SKILL.md 수정 필요.</small>
+      </li>
+      <li>
+        <strong>OS 감지 로직 추가</strong>
+        <small>Windows/macOS/Linux에서 경로 구분자·홈 디렉토리가 다름. SKILL.md에 "OS를 먼저 확인하고 그에 맞는 경로를 사용" 지시 추가.</small>
+      </li>
+      <li>
+        <strong>민감 정보 필터링 룰 명문화</strong>
+        <small>현재 repo가 public이므로 API 키, 거래처 실명, 내부 IP 기록 금지. SKILL.md에 금지 패턴 목록 추가하고, 생성 직전에 스캔하도록 지시.</small>
+      </li>
+    </ul>
+
+    <h3><span class="priority p2">2순위</span>사용성 개선</h3>
+    <ul class="todo">
+      <li>
+        <strong>같은 날짜 파일명 충돌 처리</strong>
+        <small>규칙상 <code>-2</code>, <code>-3</code> 접미를 붙이게 되어 있는데 실제 동작 미검증. 하루에 여러 번 저장하는 시나리오로 테스트 필요.</small>
+      </li>
+      <li>
+        <strong>빈 섹션 (예: CONTEXT) 자동 생략</strong>
+        <small>참고 섹션이 비어있을 때 섹션 통째로 제거하는 로직을 SKILL.md에 명시. 현재는 명시 부족.</small>
+      </li>
+      <li>
+        <strong>index.html 자동 갱신 스크립트</strong>
+        <small>repo 루트에 <code>index.html</code>을 두고 저장된 모든 TODO 파일 목록을 자동 생성. GitHub Pages로 열어보면 편리.</small>
+      </li>
+      <li>
+        <strong>커밋 메시지 자동화</strong>
+        <small>요약 첫 항목에서 주제를 추출해 <code>docs: add YYYY-MM-DD &lt;topic&gt;</code> 형식 자동 생성. 이미 거의 되어 있지만 규칙 고정 필요.</small>
+      </li>
+    </ul>
+
+    <h3><span class="priority p3">3순위</span>확장 / 공유</h3>
+    <ul class="todo">
+      <li>
+        <strong>다른 머신에서 clone 테스트</strong>
+        <small>macOS 또는 Linux 환경에서 skill이 정상 동작하는지 검증. 경로 변수화 완료 후 진행.</small>
+      </li>
+      <li>
+        <strong>my-claude-skills public repo 생성 검토</strong>
+        <small>skill 2~3개 쌓이면 별도 repo로 분리. <code>install.ps1</code> / <code>install.sh</code>로 한 줄 설치 지원.</small>
+      </li>
+      <li>
+        <strong>관련 skill 후보 발굴</strong>
+        <small>예: <code>claude-md-writer</code> (프로젝트 분석해서 CLAUDE.md 초안 제안), <code>git-init-helper</code> (이 프로젝트에 git init + .gitignore 자동 세팅), <code>hook-installer</code> (PostToolUse hook을 settings.json에 등록).</small>
+      </li>
+      <li>
+        <strong>Anthropic 공식 skills marketplace 동향 확인</strong>
+        <small>마켓플레이스가 공식화되면 자체 repo 전략과 병합 또는 이전 고려.</small>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🧭 참고 - 첫 테스트 실행 메타데이터</h2>
+    <div class="summary-grid">
+      <div>이 파일은 <code>todo-later</code> skill의 <strong>첫 실전 테스트 결과물</strong>. SKILL.md 절차를 수동 시뮬레이션으로 따라 작성됨. 이 session 이후 새로 시작하는 세션부터는 Skill tool로 자동 호출 가능해야 함 (검증 필요).</div>
+      <div>저장소: <code>https://github.com/changhoon-yoon/TodoList_Later</code> (public). Skill 정의: <code>~/.claude/skills/todo-later/SKILL.md</code>. 템플릿: <code>~/.claude/skills/todo-later/template.html</code>.</div>
+    </div>
+  </section>
+
+  <footer>
+    Generated by Claude Code · todo-later skill (manual test run) · 2026-04-14
+  </footer>
+
+</div>
+</body>
+</html>
