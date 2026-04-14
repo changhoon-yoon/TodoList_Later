@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TODO Later - 2026-04-14 Claude Code 학습</title>
+<style>
+  :root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #e2e8f0;
+    --muted: #94a3b8;
+    --accent: #38bdf8;
+    --accent-strong: #0ea5e9;
+    --success: #4ade80;
+    --warning: #fbbf24;
+    --danger: #f87171;
+    --border: #334155;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans KR", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 2rem 1rem;
+    line-height: 1.7;
+  }
+  .container { max-width: 860px; margin: 0 auto; }
+  header {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+  }
+  header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    color: var(--accent);
+  }
+  .date {
+    color: var(--muted);
+    font-size: 0.95rem;
+    font-family: "Consolas", "Menlo", monospace;
+  }
+  section {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  section h2 {
+    margin-top: 0;
+    font-size: 1.3rem;
+    color: var(--accent);
+    border-left: 4px solid var(--accent);
+    padding-left: 0.75rem;
+  }
+  section h3 {
+    color: var(--warning);
+    margin-top: 1.5rem;
+    font-size: 1.05rem;
+  }
+  .priority {
+    display: inline-block;
+    padding: 0.15rem 0.6rem;
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+  }
+  .p1 { background: var(--danger); color: #000; }
+  .p2 { background: var(--warning); color: #000; }
+  .p3 { background: var(--accent-strong); color: #000; }
+  ul.todo {
+    list-style: none;
+    padding-left: 0;
+  }
+  ul.todo li {
+    padding: 0.65rem 0.8rem;
+    margin-bottom: 0.5rem;
+    background: rgba(56, 189, 248, 0.05);
+    border-left: 3px solid var(--accent);
+    border-radius: 6px;
+  }
+  ul.todo li strong { color: var(--text); }
+  ul.todo li small {
+    display: block;
+    color: var(--muted);
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+  }
+  code {
+    background: rgba(148, 163, 184, 0.15);
+    padding: 0.15rem 0.4rem;
+    border-radius: 4px;
+    font-family: "Consolas", "Menlo", monospace;
+    font-size: 0.9em;
+    color: var(--accent);
+  }
+  .summary-grid {
+    display: grid;
+    gap: 0.75rem;
+  }
+  .summary-grid > div {
+    padding: 0.75rem 1rem;
+    background: rgba(56, 189, 248, 0.05);
+    border-radius: 6px;
+    border-left: 3px solid var(--success);
+  }
+  .summary-grid strong { color: var(--success); }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+    margin-top: 2rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <header>
+    <h1>Claude Code 학습 & 자동화 TODO</h1>
+    <div class="date">작성일: 2026-04-14 · 프로젝트: PCANtool for Keypad</div>
+  </header>
+
+  <section>
+    <h2>📌 오늘 요약 (학습/논의한 내용)</h2>
+    <div class="summary-grid">
+      <div><strong>1. Claude Code 학습 로드맵 검증</strong><br>
+        필수/중요/선택 기능 목록을 공식 문서 기준으로 검증. Plan 모드가 Shift+Tab이 아니라 <code>/plan</code>이라는 점 등 3개 오류 발견·정정.
+      </div>
+      <div><strong>2. CLAUDE.md 사용법 학습</strong><br>
+        파일 위치별 우선순위, 200줄 이내 권장, <code>@import</code> 문법, <code>/init</code> 자동 생성, <code>#</code> 키로 빠른 추가.
+      </div>
+      <div><strong>3. 이 프로젝트 맞춤 예시 제작</strong><br>
+        PCANtool 프로젝트에 맞는 CLAUDE.md 샘플 작성 (config.ini 필드 의미, J1939 CAN ID, 거래처별 주소 매핑 등).
+      </div>
+      <div><strong>4. CLAUDE.md 자동화 아이디어 논의</strong><br>
+        <code>PostToolUse</code> hook으로 CLAUDE.md 수정 → 자동 commit + push 시나리오 설계.
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>🚀 앞으로 할 일 (TODO)</h2>
+
+    <h3><span class="priority p1">1순위</span>기반 세팅</h3>
+    <ul class="todo">
+      <li>
+        <strong>이 프로젝트를 git 저장소로 초기화</strong>
+        <small>현재 PCANtool for Keypad 폴더는 <code>git init</code>이 안 된 상태. <code>.gitignore</code>에 <code>.exe / .zip / .bak / PCANBasic.dll</code> 제외 필수 (대용량 바이너리).</small>
+      </li>
+      <li>
+        <strong>CLAUDE.md 실제 작성</strong>
+        <small>오늘 논의한 샘플 구조를 기반으로 프로젝트 루트에 작성. 특히 거래처별 kpaddr 매핑 표는 향후 확장 대비 자리 잡아두기.</small>
+      </li>
+      <li>
+        <strong>GitHub private 리포 생성 후 원격 연결</strong>
+        <small>거래처 주소/장비 정보가 들어가므로 <strong>반드시 private</strong>. <code>git remote add origin ...</code> 후 첫 푸시.</small>
+      </li>
+    </ul>
+
+    <h3><span class="priority p2">2순위</span>자동화 (Hook)</h3>
+    <ul class="todo">
+      <li>
+        <strong>PostToolUse hook 구성</strong>
+        <small><code>settings.json</code>에 hook 등록: Edit 도구가 <code>CLAUDE.md</code> 수정 → <code>git add CLAUDE.md && git commit -m "docs: update CLAUDE.md" && git push</code> 자동 실행.</small>
+      </li>
+      <li>
+        <strong>UserPromptSubmit hook으로 요청 내역 자동 기록</strong>
+        <small>이전에 이야기했던 "내가 Claude에게 요청한 내용을 .md에 자동 기록 + push"는 UserPromptSubmit hook이 정답. 기록 파일 경로 결정 필요.</small>
+      </li>
+      <li>
+        <strong>민감 정보 필터링 검토</strong>
+        <small>자동 커밋 전 .gitignore / 필터 룰 점검. 거래처명이나 소스 주소가 무심코 public에 올라가지 않도록.</small>
+      </li>
+    </ul>
+
+    <h3><span class="priority p3">3순위</span>나머지 Claude Code 학습 로드맵</h3>
+    <ul class="todo">
+      <li>
+        <strong>1주차 복습:</strong> <code>/clear</code>, <code>/help</code>, <code>/model</code>, <code>/cost</code>, <code>@파일</code>, <code>!bash</code>, <code>/plan</code>
+        <small>일상 사용 기능들 손에 붙이기.</small>
+      </li>
+      <li>
+        <strong>2주차:</strong> 커스텀 슬래시 커맨드 (<code>.claude/commands/</code>) → Hooks 상세 → Permissions
+        <small>자동화 기초 완성 단계.</small>
+      </li>
+      <li>
+        <strong>3주차:</strong> Subagents → Skills → <code>/simplify</code> 등 내장 skill 체험
+        <small>확장성 확보 단계. 오늘 만든 <code>todo-later</code> skill도 이 시점에 고도화.</small>
+      </li>
+      <li>
+        <strong>4주차:</strong> Git worktree 병렬 세션 → <code>/install-github-app</code>(실제 용도 확인) → MCP 서버
+        <small>협업·외부 연동 단계.</small>
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>🧭 참고 - PCANtool 프로젝트 맥락</h2>
+    <div class="summary-grid">
+      <div>이 프로젝트는 소스 저장소가 아니라 <strong>키패드 CAN 통신 도구의 배포판 + 필드 테스트 환경</strong>. 실행 파일은 <code>pcan_125k/250k/500k.exe</code>로 baud rate별 분리 배포. Windows 전용.</div>
+      <div>핵심 설정은 <code>config.ini</code>. J1939 프로토콜 기반, CAN ID는 HEX 29-bit extended 형식. 키패드 주소는 거래처별로 다름 (예: 우진산전 = 0x21).</div>
+    </div>
+  </section>
+
+  <footer>
+    Generated by Claude Code · claude-opus-4-6 · 2026-04-14
+  </footer>
+
+</div>
+</body>
+</html>
